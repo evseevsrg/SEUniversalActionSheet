@@ -7,8 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "UniversalActionSheet.h"
 
-@interface ViewController : UIViewController
+@protocol UniversalActionSheetDelegate;
+
+@interface ViewController : UIViewController <UniversalActionSheetDelegate>
+
+- (IBAction)showActionSheet:(id)sender;
 
 
 @end
