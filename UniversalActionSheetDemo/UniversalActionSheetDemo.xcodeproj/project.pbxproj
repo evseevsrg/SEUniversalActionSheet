@@ -14,6 +14,8 @@
 		8CD3192D1A46044400150AF6 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8CD3192C1A46044400150AF6 /* Images.xcassets */; };
 		8CD319301A46044400150AF6 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8CD3192E1A46044400150AF6 /* LaunchScreen.xib */; };
 		8CD3193C1A46044400150AF6 /* UniversalActionSheetDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CD3193B1A46044400150AF6 /* UniversalActionSheetDemoTests.m */; };
+		8CD319481A46065500150AF6 /* UniversalActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CD319471A46065500150AF6 /* UniversalActionSheet.m */; };
+		8CD3194A1A46070F00150AF6 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CD319491A46070F00150AF6 /* UIKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +42,9 @@
 		8CD319351A46044400150AF6 /* UniversalActionSheetDemoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UniversalActionSheetDemoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8CD3193A1A46044400150AF6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8CD3193B1A46044400150AF6 /* UniversalActionSheetDemoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UniversalActionSheetDemoTests.m; sourceTree = "<group>"; };
+		8CD319461A46065500150AF6 /* UniversalActionSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UniversalActionSheet.h; sourceTree = "<group>"; };
+		8CD319471A46065500150AF6 /* UniversalActionSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UniversalActionSheet.m; sourceTree = "<group>"; };
+		8CD319491A46070F00150AF6 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -47,6 +52,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8CD3194A1A46070F00150AF6 /* UIKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -63,6 +69,7 @@
 		8CD319131A46044400150AF6 = {
 			isa = PBXGroup;
 			children = (
+				8CD319491A46070F00150AF6 /* UIKit.framework */,
 				8CD3191E1A46044400150AF6 /* UniversalActionSheetDemo */,
 				8CD319381A46044400150AF6 /* UniversalActionSheetDemoTests */,
 				8CD3191D1A46044400150AF6 /* Products */,
@@ -81,6 +88,7 @@
 		8CD3191E1A46044400150AF6 /* UniversalActionSheetDemo */ = {
 			isa = PBXGroup;
 			children = (
+				8CD319451A46065500150AF6 /* classes */,
 				8CD319231A46044400150AF6 /* AppDelegate.h */,
 				8CD319241A46044400150AF6 /* AppDelegate.m */,
 				8CD319261A46044400150AF6 /* ViewController.h */,
@@ -117,6 +125,16 @@
 				8CD3193A1A46044400150AF6 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		8CD319451A46065500150AF6 /* classes */ = {
+			isa = PBXGroup;
+			children = (
+				8CD319461A46065500150AF6 /* UniversalActionSheet.h */,
+				8CD319471A46065500150AF6 /* UniversalActionSheet.m */,
+			);
+			name = classes;
+			path = ../../classes;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -222,6 +240,7 @@
 				8CD319281A46044400150AF6 /* ViewController.m in Sources */,
 				8CD319251A46044400150AF6 /* AppDelegate.m in Sources */,
 				8CD319221A46044400150AF6 /* main.m in Sources */,
+				8CD319481A46065500150AF6 /* UniversalActionSheet.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
