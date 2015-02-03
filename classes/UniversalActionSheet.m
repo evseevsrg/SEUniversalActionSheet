@@ -19,6 +19,8 @@
     NSString *cancelTitle;
     NSMutableArray *otherTitles;
     
+    UIViewController *topController;
+    
     BOOL isIOS8;
     
     
@@ -150,7 +152,7 @@
     
     [self p_initAlertController];
     
-    UIViewController *topController = [UIApplication sharedApplication].keyWindow.rootViewController;
+    topController = [UIApplication sharedApplication].keyWindow.rootViewController;
     [topController presentViewController:alertController animated:YES completion:^{
       //
     }];
@@ -201,6 +203,12 @@
 }
 
 
+- (void)dealloc {
+    
+    topController = nil;
+    
+}
+
 
 #pragma mark - NSCopying
 
@@ -220,47 +228,46 @@
 #pragma mark - private methods
 
 - (void)p_initAlertController {
-  
-  int buttonIndex = -1;
-  
-  alertController = [UIAlertController alertControllerWithTitle:alertTitle message:nil preferredStyle:UIAlertControllerStyleActionSheet];
-  
-  UniversalActionSheet *selfcopy = [self copy];
-  
-  __weak typeof(self.delegate) wdelegate = self.delegate;
-  
-  // Set destructive button
-  if (destructiveTitle) {
-    buttonIndex++;
-    UIAlertAction *destructiveAction = [UIAlertAction actionWithTitle:destructiveTitle style:UIAlertActionStyleDestructive handler:^(UIAlertAction *action) {
-      if ([wdelegate respondsToSelector:@selector(actionSheet:clickedButtonAtIndex:)])
-        [wdelegate actionSheet:selfcopy clickedButtonAtIndex:buttonIndex];
-    }];
-    [alertController addAction:destructiveAction];
-  }
-  
-  // Set other buttons
-  if (otherTitles.count) {
-    for(NSString *buttonTitle in otherTitles) {
-      buttonIndex++;
-      UIAlertAction *otherButton = [UIAlertAction actionWithTitle:buttonTitle style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-        if ([wdelegate respondsToSelector:@selector(actionSheet:clickedButtonAtIndex:)])
-          [wdelegate actionSheet:selfcopy clickedButtonAtIndex:buttonIndex];
-      }];
-      [alertController addAction:otherButton];
+    
+    int buttonIndex = -1;
+    
+    alertController = [UIAlertController alertControllerWithTitle:alertTitle message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+    
+    __weak typeof(self.delegate) wdelegate = self.delegate;
+    __weak typeof(self) wself = self;
+    
+    // Set destructive button
+    if (destructiveTitle) {
+        buttonIndex++;
+        UIAlertAction *destructiveAction = [UIAlertAction actionWithTitle:destructiveTitle style:UIAlertActionStyleDestructive handler:^(UIAlertAction *action) {
+            if ([wdelegate respondsToSelector:@selector(actionSheet:clickedButtonAtIndex:)])
+                [wdelegate actionSheet:wself clickedButtonAtIndex:buttonIndex];
+        }];
+        [alertController addAction:destructiveAction];
     }
-  }
-  
-  // Set cancel button
-  if (cancelTitle) {
-    buttonIndex++;
-    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:cancelTitle style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
-      if ([wdelegate respondsToSelector:@selector(actionSheet:clickedButtonAtIndex:)])
-        [wdelegate actionSheet:selfcopy clickedButtonAtIndex:buttonIndex];
-    }];
-    [alertController addAction:cancelAction];
-  }
-  
+    
+    // Set other buttons
+    if (otherTitles.count) {
+        for(NSString *buttonTitle in otherTitles) {
+            buttonIndex++;
+            UIAlertAction *otherButton = [UIAlertAction actionWithTitle:buttonTitle style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+                if ([wdelegate respondsToSelector:@selector(actionSheet:clickedButtonAtIndex:)])
+                    [wdelegate actionSheet:wself clickedButtonAtIndex:buttonIndex];
+            }];
+            [alertController addAction:otherButton];
+        }
+    }
+    
+    // Set cancel button
+    if (cancelTitle) {
+        buttonIndex++;
+        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:cancelTitle style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
+            if ([wdelegate respondsToSelector:@selector(actionSheet:clickedButtonAtIndex:)])
+                [wdelegate actionSheet:wself clickedButtonAtIndex:buttonIndex];
+        }];
+        [alertController addAction:cancelAction];
+    }
+    
 }
 
 
